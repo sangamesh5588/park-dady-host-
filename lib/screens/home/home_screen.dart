@@ -6,8 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:shimmer/shimmer.dart';
 import 'dart:async';
-import '../../../services/permission_service.dart';
-import '../../../services/auth_service.dart';
+import '../../services/permission_service.dart';
+import '../../services/auth_service.dart';
 import '../booking/booking_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {

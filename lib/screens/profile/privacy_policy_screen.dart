@@ -10,9 +10,7 @@ class PrivacyPolicyScreen extends StatefulWidget {
 
 class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
   Future<void> _openPrivacyPolicy() async {
-    // For app store approval, you need to replace this with your actual privacy policy URL
-    // Example: 'https://yourdomain.com/privacy-policy'
-    const url = 'https://www.example.com/privacy-policy'; // Replace with your actual privacy policy URL
+    const url = 'https://splendorous-strudel-cead22.netlify.app/privacy/';
 
     try {
       final Uri uri = Uri.parse(url);

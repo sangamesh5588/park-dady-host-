@@ -10,9 +10,7 @@ class TermsOfServiceScreen extends StatefulWidget {
 
 class _TermsOfServiceScreenState extends State<TermsOfServiceScreen> {
   Future<void> _openTermsOfService() async {
-    // For app store approval, you need to replace this with your actual terms of service URL
-    // Example: 'https://yourdomain.com/terms-of-service'
-    const url = 'https://www.example.com/terms-of-service'; // Replace with your actual terms URL
+    const url = 'https://splendorous-strudel-cead22.netlify.app/terms/';
 
     try {
       final Uri uri = Uri.parse(url);

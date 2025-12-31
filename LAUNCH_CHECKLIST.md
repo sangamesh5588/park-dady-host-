@@ -1,6 +1,6 @@
 # 🚀 Play Store Launch Checklist
 
-Quick reference checklist for launching Parking Host app on Google Play Store.
+Quick reference checklist for launching ParkDady Host app on Google Play Store.
 
 **Last Updated**: 2025-12-30
 **Target Launch Date**: _____________
@@ -239,4 +239,3 @@ flutter build appbundle --release --analyze-size
 ---
 
 **Good luck with your launch! 🚀**
-

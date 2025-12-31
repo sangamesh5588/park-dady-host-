@@ -1,6 +1,6 @@
 # Screens Architecture
 
-This directory contains all screen widgets for the Parking Host app, organized by feature for better maintainability and scalability.
+This directory contains all screen widgets for the ParkDady Host app, organized by feature for better maintainability and scalability.
 
 ## 📁 Folder Structure
 

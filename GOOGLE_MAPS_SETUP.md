@@ -1,4 +1,4 @@
-# Google Maps Setup Guide for Parking Host App
+# Google Maps Setup Guide for ParkDady Host App
 
 This guide will help you configure Google Maps for the location picker feature in the host onboarding form.
 

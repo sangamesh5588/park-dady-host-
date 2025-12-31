@@ -1,4 +1,4 @@
-# Parking Host
+# ParkDady Host
 
 A Flutter application for parking space hosts to manage their parking spots and bookings.
 
@@ -116,4 +116,4 @@ lib/
 3. Make your changes
 4. Test thoroughly
 5. Submit a pull request
-"# parking_partner_app" 
+"# parking_partner_app"

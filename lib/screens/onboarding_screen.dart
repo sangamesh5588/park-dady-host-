@@ -204,7 +204,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
               const SizedBox(height: 8),
               Text(
-                'Please grant the following permissions to use all features of Parking Host',
+                'Please grant the following permissions to use all features of ParkDady Host',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),

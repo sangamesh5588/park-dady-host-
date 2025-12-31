@@ -2,7 +2,7 @@
 
 ## ✅ What's Been Implemented
 
-Your Parking Host app now has a **professional-grade permission request system** that matches the best apps on the App Store and Google Play Store.
+Your ParkDady Host app now has a **professional-grade permission request system** that matches the best apps on the App Store and Google Play Store.
 
 ## 🎯 Key Features
 

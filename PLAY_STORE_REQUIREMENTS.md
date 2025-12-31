@@ -1,14 +1,14 @@
-# Play Store Publishing Requirements - Parking Host App
+# Play Store Publishing Requirements - ParkDady Host App
 
 ## Overview
-This document outlines all requirements and tasks needed to publish the Parking Host app on Google Play Store.
+This document outlines all requirements and tasks needed to publish the ParkDady Host app on Google Play Store.
 
 ---
 
 ## 1. APP CONFIGURATION & METADATA
 
 ### 1.1 App Identity
-- [ ] **App Name**: Choose final app name (currently "Parking Host")
+- [ ] **App Name**: Choose final app name (currently "ParkDady Host")
   - Check availability on Play Store
   - Consider trademark conflicts
   - Maximum 50 characters
@@ -571,4 +571,3 @@ This document outlines all requirements and tasks needed to publish the Parking 
 - **Play Console Help**: https://support.google.com/googleplay/android-developer
 - **Flutter Documentation**: https://docs.flutter.dev/deployment/android
 - **Supabase Support**: https://supabase.com/docs
-

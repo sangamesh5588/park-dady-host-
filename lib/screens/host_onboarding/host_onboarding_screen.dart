@@ -1568,7 +1568,9 @@ class _HostOnboardingScreenState extends State<HostOnboardingScreen> {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        file.name.length > 30 ? '${file.name.substring(0, 27)}...' : file.name,
+                        (file.name.isNotEmpty && file.name.length > 30)
+                            ? '${file.name.substring(0, 27)}...'
+                            : (file.name.isNotEmpty ? file.name : file.path.split('/').last),
                         style: TextStyle(
                           color: Colors.grey[600],
                           fontSize: 12,

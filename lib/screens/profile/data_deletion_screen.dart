@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../services/auth_service.dart';
 
 class DataDeletionScreen extends StatefulWidget {
   const DataDeletionScreen({super.key});
@@ -11,6 +12,7 @@ class DataDeletionScreen extends StatefulWidget {
 class _DataDeletionScreenState extends State<DataDeletionScreen> {
   final TextEditingController _reasonController = TextEditingController();
   final TextEditingController _additionalInfoController = TextEditingController();
+  final AuthService _authService = AuthService();
   bool _confirmDeletion = false;
   bool _isSubmitting = false;
 
@@ -32,28 +34,57 @@ class _DataDeletionScreenState extends State<DataDeletionScreen> {
       return;
     }
 
+    // Show confirmation dialog
+    final finalConfirm = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Final Confirmation'),
+        content: const Text(
+          'This will permanently delete your account and all associated data. This action cannot be undone.\n\nAre you absolutely sure?',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.red,
+            ),
+            child: const Text('Yes, Delete My Account'),
+          ),
+        ],
+      ),
+    );
+
+    if (finalConfirm != true) return;
+
     setState(() => _isSubmitting = true);
 
     try {
-      // Here you would typically send the deletion request to your backend
-      // For now, we'll simulate the process
-
-      await Future.delayed(const Duration(seconds: 2)); // Simulate API call
+      // Call the actual deletion service
+      await _authService.deleteAccount();
 
       if (mounted) {
+        // Navigate to onboarding screen
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          '/onboarding',
+          (route) => false,
+        );
+
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Data deletion request submitted successfully'),
+            content: Text('Account deleted successfully'),
             backgroundColor: Colors.green,
           ),
         );
-        Navigator.of(context).pop();
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to submit request: $e'),
+            content: Text('Failed to delete account: $e'),
             backgroundColor: Colors.red,
           ),
         );

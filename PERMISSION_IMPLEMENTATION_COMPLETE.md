@@ -288,7 +288,7 @@ Future<void> _getCurrentLocation() async {
 
 ### "Location permission required" message?
 - Grant permission in onboarding
-- Or manually: Settings → Apps → Parking Host → Permissions → Location
+- Or manually: Settings → Apps → ParkDady Host → Permissions → Location
 
 ---
 

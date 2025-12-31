@@ -571,4 +571,19 @@ class AuthService {
       return null;
     }
   }
+
+  // Delete user account and all associated data
+  Future<void> deleteAccount() async {
+    if (currentUser == null) {
+      throw Exception('No user is currently signed in');
+    }
+
+    try {
+      // Call the Supabase RPC function to handle all deletions
+      await _supabase.rpc('delete_user');
+    } catch (e) {
+      print('Error deleting account: $e');
+      rethrow;
+    }
+  }
 }

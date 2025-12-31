@@ -1,6 +1,6 @@
 # Supabase Database Setup
 
-This folder contains the database migration files for the Parking Host app.
+This folder contains the database migration files for the ParkDady Host app.
 
 ## Setup Instructions
 

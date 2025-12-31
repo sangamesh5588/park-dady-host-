@@ -112,7 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       builder: (context) => AlertDialog(
         title: const Text('Delete Account'),
         content: const Text(
-          'Are you sure you want to delete your account? This action cannot be undone.',
+          'Are you sure you want to delete your account? This action cannot be undone and will permanently delete all your data including:\n\n• Profile information\n• Parking listings\n• Bookings and transactions\n• All associated records',
         ),
         actions: [
           TextButton(
@@ -131,10 +131,48 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
 
     if (confirmed == true && mounted) {
-      // TODO: Implement account deletion
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Account deletion - Coming soon!')),
+      // Show loading indicator
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(
+          child: CircularProgressIndicator(
+            color: Color(0xFF6366F1),
+          ),
+        ),
       );
+
+      try {
+        await _authService.deleteAccount();
+
+        if (mounted) {
+          Navigator.of(context).pop(); // Close loading dialog
+
+          // Navigate to onboarding/login screen
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            '/onboarding',
+            (route) => false,
+          );
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Account deleted successfully'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        }
+      } catch (e) {
+        if (mounted) {
+          Navigator.of(context).pop(); // Close loading dialog
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Failed to delete account: $e'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      }
     }
   }
 

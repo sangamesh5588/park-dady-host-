@@ -15,7 +15,7 @@ void main() {
     await tester.pumpWidget(const ParkingHostApp());
 
     // Verify that splash screen loads
-    expect(find.text('Parking Host'), findsOneWidget);
+    expect(find.text('ParkDady Host'), findsOneWidget);
     expect(find.text('Smart Parking Solutions'), findsOneWidget);
   });
 }

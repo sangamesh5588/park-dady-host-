@@ -572,7 +572,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           // Business name
                           Text(
-                            _businessName ?? 'Parking Host',
+                            _businessName ?? 'ParkDady Host',
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w800,

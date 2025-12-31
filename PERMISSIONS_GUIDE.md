@@ -1,8 +1,8 @@
-# Permissions Guide for Parking Host App
+# Permissions Guide for ParkDady Host App
 
 ## Overview
 
-Your Parking Host app now has a fully functional permission request system that asks users for all necessary permissions **before** they enter the main app, just like professional apps (Instagram, Uber, etc.).
+Your ParkDady Host app now has a fully functional permission request system that asks users for all necessary permissions **before** they enter the main app, just like professional apps (Instagram, Uber, etc.).
 
 ## Implemented Features
 
@@ -118,7 +118,7 @@ After completing all steps (or skipping), users are taken to the main app at `/m
    ```
 
 2. **Reset Permissions**:
-   - Settings > Privacy > [Permission Type] > Parking Host > Toggle Off
+   - Settings > Privacy > [Permission Type] > ParkDady Host > Toggle Off
    - Or uninstall and reinstall app
 
 ## User Experience

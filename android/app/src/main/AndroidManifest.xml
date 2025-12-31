@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Permissions for Parking Host App -->
+    <!-- Permissions for ParkDady Host App -->
     <!-- Location permissions for finding parking spaces -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -23,7 +23,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:label="praking_host"
+        android:label="ParkDady Host"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -57,7 +57,7 @@ class _ParkingHostAppState extends State<ParkingHostApp> {
         // Show loading while determining auth state
         if (snapshot.connectionState == ConnectionState.waiting) {
           return MaterialApp(
-            title: 'Parking Host',
+            title: 'ParkDady Host',
             debugShowCheckedModeBanner: false,
             themeMode: _themeMode,
             theme: ThemeData(
@@ -100,7 +100,7 @@ class _ParkingHostAppState extends State<ParkingHostApp> {
           builder: (context, screenSnapshot) {
             if (screenSnapshot.connectionState == ConnectionState.waiting) {
               return MaterialApp(
-                title: 'Parking Host',
+                title: 'ParkDady Host',
                 debugShowCheckedModeBanner: false,
                 themeMode: _themeMode,
               theme: ThemeData(
@@ -136,7 +136,7 @@ class _ParkingHostAppState extends State<ParkingHostApp> {
             }
 
             return MaterialApp(
-              title: 'Parking Host',
+              title: 'ParkDady Host',
               debugShowCheckedModeBanner: false,
               themeMode: _themeMode,
               theme: ThemeData(
@@ -348,7 +348,7 @@ class _ParkingHostAppState extends State<ParkingHostApp> {
                       ),
                       const SizedBox(height: 16),
                       const Text(
-                        'Location permission is required to use Parking Host. Please grant the permission to continue.',
+                        'Location permission is required to use ParkDady Host. Please grant the permission to continue.',
                         style: TextStyle(fontSize: 16),
                         textAlign: TextAlign.center,
                       ),

@@ -1,6 +1,6 @@
 # Authentication System Guide
 
-This guide will help you set up and test the authentication system for the Parking Host app.
+This guide will help you set up and test the authentication system for the ParkDady Host app.
 
 ## Prerequisites
 

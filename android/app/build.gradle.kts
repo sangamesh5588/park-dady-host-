@@ -36,8 +36,11 @@ android {
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion  // Required for mobile_scanner
         targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        versionCode = 2  // Explicit version code for Play Store
+        versionName = "1.0.1"  // Explicit version name
+
+        // Privacy policy URL for Play Store requirements
+        manifestPlaceholders["privacyPolicyUrl"] = "https://parkdady.com/privacy-policy"
     }
 
     signingConfigs {

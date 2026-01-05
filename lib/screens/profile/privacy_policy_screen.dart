@@ -17,6 +17,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
     super.initState();
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..clearCache()
       ..setNavigationDelegate(
         NavigationDelegate(
           onPageStarted: (String url) {
@@ -31,7 +32,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
           },
         ),
       )
-      ..loadRequest(Uri.parse('https://splendorous-strudel-cead22.netlify.app/privacy/'));
+      ..loadRequest(Uri.parse('https://www.parkdady.com/privacy-policy'));
   }
 
   @override
@@ -39,7 +40,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF6366F1),
+        backgroundColor: const Color(0xFF1A1A1A),
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -61,7 +62,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
           if (_isLoading)
             const Center(
               child: CircularProgressIndicator(
-                color: Color(0xFF6366F1),
+                color: Color(0xFF1A1A1A),
               ),
             ),
         ],

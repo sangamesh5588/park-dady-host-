@@ -6,29 +6,74 @@ import 'contact_support_screen.dart';
 class SupportScreen extends StatelessWidget {
   const SupportScreen({super.key});
 
-  Future<void> _makePhoneCall(String phoneNumber) async {
-    final Uri launchUri = Uri(scheme: 'tel', path: phoneNumber);
-    if (await canLaunchUrl(launchUri)) {
-      await launchUrl(launchUri);
-    } else {
-      throw 'Could not launch $launchUri';
+  Future<void> _makePhoneCall(String phoneNumber, BuildContext context) async {
+    try {
+      final Uri launchUri = Uri(scheme: 'tel', path: phoneNumber);
+      if (await canLaunchUrl(launchUri)) {
+        await launchUrl(launchUri);
+      } else {
+        _showErrorDialog(context, 'Unable to make phone call. Please check if your device supports phone calls.');
+      }
+    } catch (e) {
+      _showErrorDialog(context, 'Failed to launch phone dialer. Please try again.');
     }
   }
 
-  Future<void> _sendEmail(String email) async {
-    final Uri launchUri = Uri(
-      scheme: 'mailto',
-      path: email,
-      queryParameters: {
-        'subject': 'Support Request',
-        'body': 'Please describe your issue here...',
+  Future<void> _openWhatsApp(String phoneNumber, BuildContext context) async {
+    try {
+      final Uri whatsappUri = Uri.parse('https://wa.me/$phoneNumber?text=Hi, I need help with ParkingHost app.');
+      if (await canLaunchUrl(whatsappUri)) {
+        await launchUrl(whatsappUri, mode: LaunchMode.externalApplication);
+      } else {
+        // Fallback to web WhatsApp
+        final Uri webWhatsappUri = Uri.parse('https://web.whatsapp.com/send?phone=$phoneNumber&text=Hi, I need help with ParkingHost app.');
+        if (await canLaunchUrl(webWhatsappUri)) {
+          await launchUrl(webWhatsappUri, mode: LaunchMode.externalApplication);
+        } else {
+          _showErrorDialog(context, 'Unable to open WhatsApp. Please make sure WhatsApp is installed on your device.');
+        }
+      }
+    } catch (e) {
+      _showErrorDialog(context, 'Failed to open WhatsApp. Please try again.');
+    }
+  }
+
+  Future<void> _sendEmail(String email, BuildContext context) async {
+    try {
+      final Uri launchUri = Uri(
+        scheme: 'mailto',
+        path: email,
+        queryParameters: {
+          'subject': 'ParkingHost Support Request',
+          'body': 'Hello ParkingHost Support Team,\n\nPlease describe your issue here...\n\nApp Version: 1.0.0\nDevice: Android/iOS\n\nBest regards,',
+        },
+      );
+      if (await canLaunchUrl(launchUri)) {
+        await launchUrl(launchUri);
+      } else {
+        _showErrorDialog(context, 'Unable to open email app. Please send an email to $email manually.');
+      }
+    } catch (e) {
+      _showErrorDialog(context, 'Failed to open email app. Please try again.');
+    }
+  }
+
+  void _showErrorDialog(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Unable to Proceed'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
       },
     );
-    if (await canLaunchUrl(launchUri)) {
-      await launchUrl(launchUri);
-    } else {
-      throw 'Could not launch $launchUri';
-    }
   }
 
   @override
@@ -40,7 +85,7 @@ class SupportScreen extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF1F2937)),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           style: IconButton.styleFrom(
             backgroundColor: Colors.white,
             shadowColor: const Color(0x1F000000),
@@ -50,7 +95,7 @@ class SupportScreen extends StatelessWidget {
         title: const Text(
           'Support & Help',
           style: TextStyle(
-            color: Color(0xFF1F2937),
+            color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
@@ -80,13 +125,19 @@ class SupportScreen extends StatelessWidget {
             icon: Icons.phone,
             title: 'Call Us',
             subtitle: 'Speak directly with our team',
-            onTap: () => _makePhoneCall('+1-800-PARKING'),
+            onTap: () => _makePhoneCall('+91-9876543210', context),
           ),
           _buildSupportItem(
             icon: Icons.email,
             title: 'Email Support',
             subtitle: 'Send us an email',
-            onTap: () => _sendEmail('support@parkinghost.com'),
+            onTap: () => _sendEmail('support@parkinghost.com', context),
+          ),
+          _buildSupportItem(
+            icon: Icons.chat,
+            title: 'WhatsApp Support',
+            subtitle: 'Chat with us on WhatsApp',
+            onTap: () => _openWhatsApp('919876543210', context),
           ),
         ],
       ),

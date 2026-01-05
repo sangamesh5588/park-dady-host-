@@ -119,7 +119,7 @@ class _BookingsScreenState extends State<BookingsScreen> with SingleTickerProvid
         title: const Text(
           'My Bookings',
           style: TextStyle(
-            color: Color(0xFF1F2937),
+            color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
@@ -127,7 +127,7 @@ class _BookingsScreenState extends State<BookingsScreen> with SingleTickerProvid
         centerTitle: true,
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator(color: Color(0xFF6366F1)))
+          ? const Center(child: CircularProgressIndicator(color: Colors.black))
           : Column(
               children: [
                 // Statistics Card
@@ -136,12 +136,12 @@ class _BookingsScreenState extends State<BookingsScreen> with SingleTickerProvid
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
-                      colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                      colors: [Colors.black, Color(0xFF333333)],
                     ),
                     borderRadius: BorderRadius.circular(16),
                     boxShadow: const [
                       BoxShadow(
-                        color: Color(0x196366F1),
+                        color: Color(0x19000000),
                         blurRadius: 20,
                         offset: Offset(0, 8),
                       ),
@@ -169,7 +169,7 @@ class _BookingsScreenState extends State<BookingsScreen> with SingleTickerProvid
                     controller: _tabController,
                     indicator: BoxDecoration(
                       gradient: const LinearGradient(
-                        colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                        colors: [Colors.black, Color(0xFF333333)],
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -422,13 +422,13 @@ class _BookingsScreenState extends State<BookingsScreen> with SingleTickerProvid
             // Price - show based on booking status
             Row(
               children: [
-                // For completed bookings, show total collected amount in green
+                // For completed bookings, show total collected amount
                 if (status == 'completed') ...[
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
-                        colors: [Color(0xFF10B981), Color(0xFF059669)],
+                        colors: [Colors.black, Color(0xFF333333)],
                       ),
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -453,7 +453,7 @@ class _BookingsScreenState extends State<BookingsScreen> with SingleTickerProvid
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
-                        colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                        colors: [Colors.black, Color(0xFF333333)],
                       ),
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -473,7 +473,7 @@ class _BookingsScreenState extends State<BookingsScreen> with SingleTickerProvid
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
-                          colors: [Color(0xFFEF4444), Color(0xFFDC2626)],
+                          colors: [Colors.grey, Color(0xFF555555)],
                         ),
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -498,43 +498,51 @@ class _BookingsScreenState extends State<BookingsScreen> with SingleTickerProvid
   }
 
   Widget _buildStatusBadge(String status) {
-    Color color;
+    Color bgColor;
+    Color textColor;
     String text;
 
     switch (status) {
       case 'pending':
-        color = const Color(0xFF2196F3);
+        bgColor = Colors.black.withOpacity(0.1);
+        textColor = Colors.black.withOpacity(0.7);
         text = 'Pending';
         break;
       case 'confirmed':
-        color = const Color(0xFF4CAF50);
+        bgColor = Colors.black.withOpacity(0.1);
+        textColor = Colors.black;
         text = 'Confirmed';
         break;
       case 'checked_in':
-        color = const Color(0xFF9C27B0);
+        bgColor = Colors.black.withOpacity(0.15);
+        textColor = Colors.black;
         text = 'Checked In';
         break;
       case 'completed':
-        color = const Color(0xFF10B981);
+        bgColor = Colors.black.withOpacity(0.1);
+        textColor = Colors.black;
         text = 'Completed';
         break;
       case 'cancelled':
-        color = const Color(0xFFFF4444);
+        bgColor = Colors.black.withOpacity(0.1);
+        textColor = Colors.black.withOpacity(0.7);
         text = 'Cancelled';
         break;
       case 'expired':
-        color = const Color(0xFF9E9E9E);
+        bgColor = Colors.grey.withOpacity(0.2);
+        textColor = Colors.grey;
         text = 'Expired';
         break;
       default:
-        color = const Color(0xFF9E9E9E);
+        bgColor = Colors.grey.withOpacity(0.2);
+        textColor = Colors.grey;
         text = status;
     }
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.1),
+        color: bgColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Text(
@@ -542,7 +550,7 @@ class _BookingsScreenState extends State<BookingsScreen> with SingleTickerProvid
         style: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
-          color: color,
+          color: textColor,
         ),
       ),
     );

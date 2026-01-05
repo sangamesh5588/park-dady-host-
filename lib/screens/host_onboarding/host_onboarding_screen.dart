@@ -314,7 +314,21 @@ class _HostOnboardingScreenState extends State<HostOnboardingScreen> {
   }
 
   Future<void> _submitForm() async {
-    if (!_formKey.currentState!.validate()) return;
+    if (_formKey.currentState?.validate() != true) return;
+
+    // Check if user is authenticated
+    final currentUser = Supabase.instance.client.auth.currentUser;
+    if (currentUser == null) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('User not authenticated. Please log in again.'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+      return;
+    }
 
     setState(() => _isLoading = true);
 
@@ -344,7 +358,7 @@ class _HostOnboardingScreenState extends State<HostOnboardingScreen> {
 
       // Prepare host profile data
       final hostData = {
-        'user_id': Supabase.instance.client.auth.currentUser!.id,
+        'user_id': currentUser.id,
         'full_name': _fullNameController.text,
         'phone': _phoneController.text,
         'email': _emailController.text,
@@ -444,7 +458,7 @@ class _HostOnboardingScreenState extends State<HostOnboardingScreen> {
 
   bool _validatePersonalDetailsStep() {
     // Trigger form validation to show individual field errors under each TextFormField
-    final formValid = _formKey.currentState!.validate();
+    final formValid = _formKey.currentState?.validate() ?? false;
 
     // Check location selection separately (not part of form validation)
     final locationValid = _latitude != null && _longitude != null;
@@ -479,7 +493,7 @@ class _HostOnboardingScreenState extends State<HostOnboardingScreen> {
 
   bool _validateBusinessDetailsStep() {
     // Trigger form validation for business details step
-    final formValid = _formKey.currentState!.validate();
+    final formValid = _formKey.currentState?.validate() ?? false;
 
     // Check business type specific validation (company name when business type is Company)
     if (_businessType == 'Company') {
@@ -494,7 +508,7 @@ class _HostOnboardingScreenState extends State<HostOnboardingScreen> {
 
   bool _validateBankManagerDetailsStep() {
     // Trigger form validation to show individual field errors under each TextFormField
-    final formValid = _formKey.currentState!.validate();
+    final formValid = _formKey.currentState?.validate() ?? false;
 
     // Check file upload separately (not part of form validation)
     final cancelledChequeValid = _cancelledCheque != null;

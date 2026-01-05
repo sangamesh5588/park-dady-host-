@@ -31,7 +31,7 @@ class _TermsOfServiceScreenState extends State<TermsOfServiceScreen> {
           },
         ),
       )
-      ..loadRequest(Uri.parse('https://splendorous-strudel-cead22.netlify.app/terms/'));
+      ..loadRequest(Uri.parse('https://www.parkdady.com/terms-of-service'));
   }
 
   @override
@@ -39,7 +39,7 @@ class _TermsOfServiceScreenState extends State<TermsOfServiceScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF6366F1),
+        backgroundColor: const Color(0xFF1A1A1A),
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
@@ -61,7 +61,7 @@ class _TermsOfServiceScreenState extends State<TermsOfServiceScreen> {
           if (_isLoading)
             const Center(
               child: CircularProgressIndicator(
-                color: Color(0xFF6366F1),
+                color: Color(0xFF1A1A1A),
               ),
             ),
         ],

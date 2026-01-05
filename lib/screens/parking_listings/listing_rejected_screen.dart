@@ -8,7 +8,7 @@ class ListingRejectedScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Listing Status'),
-        backgroundColor: const Color(0xFFDC2626),
+        backgroundColor: const Color.fromARGB(255, 236, 68, 68),
         foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
@@ -269,7 +269,7 @@ class ListingRejectedScreen extends StatelessWidget {
                           Navigator.of(context).pushNamed('/create_listing');
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF6366F1),
+                          backgroundColor: const Color.fromARGB(255, 36, 37, 63),
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(

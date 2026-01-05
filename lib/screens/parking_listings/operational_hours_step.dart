@@ -52,7 +52,7 @@ class _OperationalHoursStepState extends State<OperationalHoursStep> {
                     width: 32,
                     height: 32,
                     decoration: const BoxDecoration(
-                      color: Color(0xFF6366F1),
+                      color: Color.fromARGB(255, 0, 0, 0),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -150,8 +150,8 @@ class _OperationalHoursStepState extends State<OperationalHoursStep> {
                   Switch(
                     value: widget.is24x7,
                     onChanged: widget.on24x7Changed,
-                    activeColor: const Color(0xFF6366F1),
-                    activeTrackColor: const Color(0xFF6366F1).withValues(alpha: 0.3),
+                    activeColor: const Color.fromARGB(255, 0, 0, 0),
+                    activeTrackColor: const Color.fromARGB(255, 0, 0, 0).withValues(alpha: 0.3),
                   ),
                 ],
               ),
@@ -215,7 +215,7 @@ class _OperationalHoursStepState extends State<OperationalHoursStep> {
                       width: 32,
                       height: 32,
                       decoration: const BoxDecoration(
-                        color: Color(0xFF6366F1),
+                        color: Color.fromARGB(255, 0, 0, 0),
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(

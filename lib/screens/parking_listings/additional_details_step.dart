@@ -51,12 +51,12 @@ class _AdditionalDetailsStepState extends State<AdditionalDetailsStep> {
               width: 32,
               height: 32,
               decoration: BoxDecoration(
-                color: const Color(0xFF6366F1).withValues(alpha: 0.1),
+                color: const Color.fromARGB(255, 0, 0, 0).withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(
                 icon,
-                color: const Color(0xFF6366F1),
+                color: const Color.fromARGB(255, 0, 0, 0),
                 size: 18,
               ),
             ),
@@ -221,7 +221,7 @@ class _AdditionalDetailsStepState extends State<AdditionalDetailsStep> {
                     width: 32,
                     height: 32,
                     decoration: const BoxDecoration(
-                      color: Color(0xFF6366F1),
+                      color: Color.fromARGB(255, 0, 0, 0),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -285,7 +285,7 @@ class _AdditionalDetailsStepState extends State<AdditionalDetailsStep> {
                     width: 48,
                     height: 48,
                     decoration: const BoxDecoration(
-                      color: Color(0xFF6366F1),
+                      color: Color.fromARGB(255, 0, 0, 0),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -481,7 +481,7 @@ class _AdditionalDetailsStepState extends State<AdditionalDetailsStep> {
                   decoration: InputDecoration(
                     labelText: 'Any special instructions for customers?',
                     labelStyle: TextStyle(color: Colors.grey[600]),
-                    prefixIcon: const Icon(Icons.note, color: Color(0xFF6366F1)),
+                    prefixIcon: const Icon(Icons.note, color: Color.fromARGB(255, 0, 0, 0)),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,

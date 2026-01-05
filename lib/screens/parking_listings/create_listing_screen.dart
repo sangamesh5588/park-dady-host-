@@ -37,10 +37,6 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
   final _hourlyBikeRateController = TextEditingController();
   final _dailyCarRateController = TextEditingController();
   final _dailyBikeRateController = TextEditingController();
-  final _hourlyCarDiscountController = TextEditingController();
-  final _hourlyBikeDiscountController = TextEditingController();
-  final _dailyCarDiscountController = TextEditingController();
-  final _dailyBikeDiscountController = TextEditingController();
 
   // Form values
   double? _latitude;
@@ -108,10 +104,6 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
         _hourlyBikeRateController.text = prefs.getString('${userKey}_hourlyBikeRate') ?? '';
         _dailyCarRateController.text = prefs.getString('${userKey}_dailyCarRate') ?? '';
         _dailyBikeRateController.text = prefs.getString('${userKey}_dailyBikeRate') ?? '';
-        _hourlyCarDiscountController.text = prefs.getString('${userKey}_hourlyCarDiscount') ?? '';
-        _hourlyBikeDiscountController.text = prefs.getString('${userKey}_hourlyBikeDiscount') ?? '';
-        _dailyCarDiscountController.text = prefs.getString('${userKey}_dailyCarDiscount') ?? '';
-        _dailyBikeDiscountController.text = prefs.getString('${userKey}_dailyBikeDiscount') ?? '';
 
         // Load special instructions
         _specialInstructionsController.text = prefs.getString('${userKey}_specialInstructions') ?? '';
@@ -164,10 +156,6 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
         await prefs.setString('${userKey}_hourlyBikeRate', _hourlyBikeRateController.text);
         await prefs.setString('${userKey}_dailyCarRate', _dailyCarRateController.text);
         await prefs.setString('${userKey}_dailyBikeRate', _dailyBikeRateController.text);
-        await prefs.setString('${userKey}_hourlyCarDiscount', _hourlyCarDiscountController.text);
-        await prefs.setString('${userKey}_hourlyBikeDiscount', _hourlyBikeDiscountController.text);
-        await prefs.setString('${userKey}_dailyCarDiscount', _dailyCarDiscountController.text);
-        await prefs.setString('${userKey}_dailyBikeDiscount', _dailyBikeDiscountController.text);
 
         // Save special instructions
         await prefs.setString('${userKey}_specialInstructions', _specialInstructionsController.text);
@@ -549,7 +537,7 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8FAFC),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.white,
@@ -563,7 +551,7 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
               width: 8,
               height: 8,
               decoration: BoxDecoration(
-                color: const Color(0xFF6366F1),
+                color: Colors.black,
                 shape: BoxShape.circle,
               ),
             ),
@@ -571,7 +559,7 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
             Text(
               'Create Listing',
               style: TextStyle(
-                color: Colors.grey[800],
+                color: Colors.black,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 letterSpacing: -0.5,
@@ -622,7 +610,7 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
                         margin: const EdgeInsets.symmetric(horizontal: 4),
                         decoration: BoxDecoration(
                           color: index <= _currentStep
-                              ? const Color(0xFF6366F1)
+                              ? const Color(0xFF1A1A1A)
                               : Colors.grey[300],
                           borderRadius: BorderRadius.circular(2),
                         ),
@@ -694,12 +682,12 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
                         height: 56,
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
-                            colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                            colors: [Color(0xFF1A1A1A), Color(0xFF333333)],
                           ),
                           borderRadius: BorderRadius.circular(16),
                           boxShadow: [
                             BoxShadow(
-                              color: const Color(0xFF6366F1).withValues(alpha: 0.3),
+                              color: const Color(0xFF1A1A1A).withValues(alpha: 0.3),
                               blurRadius: 12,
                               offset: const Offset(0, 4),
                             ),
@@ -780,12 +768,12 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
                               height: 56,
                               decoration: BoxDecoration(
                                 gradient: const LinearGradient(
-                                  colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                                  colors: [Color(0xFF1A1A1A), Color(0xFF333333)],
                                 ),
                                 borderRadius: BorderRadius.circular(16),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: const Color(0xFF6366F1).withValues(alpha: 0.3),
+                                    color: const Color(0xFF1A1A1A).withValues(alpha: 0.3),
                                     blurRadius: 12,
                                     offset: const Offset(0, 4),
                                   ),
@@ -909,10 +897,6 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
           hourlyBikeRateController: _hourlyBikeRateController,
           dailyCarRateController: _dailyCarRateController,
           dailyBikeRateController: _dailyBikeRateController,
-          hourlyCarDiscountController: _hourlyCarDiscountController,
-          hourlyBikeDiscountController: _hourlyBikeDiscountController,
-          dailyCarDiscountController: _dailyCarDiscountController,
-          dailyBikeDiscountController: _dailyBikeDiscountController,
           parkingType: _parkingType,
         );
       case 5:
@@ -948,10 +932,6 @@ class _CreateListingScreenState extends State<CreateListingScreen> {
     _hourlyBikeRateController.dispose();
     _dailyCarRateController.dispose();
     _dailyBikeRateController.dispose();
-    _hourlyCarDiscountController.dispose();
-    _hourlyBikeDiscountController.dispose();
-    _dailyCarDiscountController.dispose();
-    _dailyBikeDiscountController.dispose();
     super.dispose();
   }
 }

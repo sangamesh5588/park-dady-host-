@@ -9,12 +9,15 @@ class ManageSlotsScreen extends StatefulWidget {
   State<ManageSlotsScreen> createState() => _ManageSlotsScreenState();
 }
 
-class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
+class _ManageSlotsScreenState extends State<ManageSlotsScreen> with AutomaticKeepAliveClientMixin {
   final AuthService _authService = AuthService();
   final SlotService _slotService = SlotService();
 
   List<Map<String, dynamic>> _approvedListings = [];
   bool _isLoading = true;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -101,7 +104,7 @@ class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(message),
-              backgroundColor: Colors.blue,
+              backgroundColor: const Color(0xFF1A1A1A),
               duration: const Duration(seconds: 5),
             ),
           );
@@ -131,6 +134,7 @@ class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context); // Required for AutomaticKeepAliveClientMixin
     debugPrint('🔧 BUILD METHOD CALLED - isLoading: $_isLoading, approvedListings: ${_approvedListings.length}');
 
     return Scaffold(
@@ -182,7 +186,7 @@ class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
             height: 32,
             child: CircularProgressIndicator(
               strokeWidth: 2,
-              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF6366F1)),
+              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF1A1A1A)),
             ),
           ),
           SizedBox(height: 16),
@@ -281,7 +285,7 @@ class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
                         width: 32,
                         height: 32,
                         decoration: const BoxDecoration(
-                          color: Color(0xFF6366F1),
+                          color: Color(0xFF1A1A1A),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
@@ -324,7 +328,7 @@ class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF6366F1),
+                  backgroundColor: const Color(0xFF1A1A1A),
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
@@ -397,7 +401,7 @@ class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
                     width: 40,
                     height: 40,
                     decoration: const BoxDecoration(
-                      color: Color(0xFF10B981),
+                      color: Color(0xFF1A1A1A),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -437,7 +441,7 @@ class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
         Expanded(
           child: RefreshIndicator(
             onRefresh: _loadApprovedListings,
-            color: const Color(0xFF6366F1),
+            color: const Color(0xFF1A1A1A),
             child: ListView.builder(
               padding: const EdgeInsets.all(16),
               itemCount: _approvedListings.length,
@@ -490,7 +494,7 @@ class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
           width: 28,
           height: 28,
           decoration: const BoxDecoration(
-            color: Color(0xFF6366F1),
+            color: Color(0xFF1A1A1A),
             shape: BoxShape.circle,
           ),
           child: Center(
@@ -566,12 +570,12 @@ class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF0FDFA),
+                        color: const Color(0xFFF5F5F5),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Icon(
                         Icons.local_parking,
-                        color: Color(0xFF10B981),
+                        color: Color(0xFF1A1A1A),
                         size: 24,
                       ),
                     ),
@@ -621,8 +625,12 @@ class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    color: hasTodaySlots ? const Color(0xFFDCFCE7) : const Color(0xFFFEE2E2),
+                    color: hasTodaySlots ? const Color(0xFFF5F5F5) : const Color(0xFFF5F5F5),
                     borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: const Color(0xFF1A1A1A).withValues(alpha: 0.2),
+                      width: 1,
+                    ),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -630,15 +638,15 @@ class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
                       Icon(
                         hasTodaySlots ? Icons.check_circle : Icons.schedule,
                         size: 16,
-                        color: hasTodaySlots ? const Color(0xFF16A34A) : const Color(0xFFDC2626),
+                        color: const Color(0xFF1A1A1A),
                       ),
                       const SizedBox(width: 6),
                       Text(
                         hasTodaySlots ? 'Slots Set Today' : 'Slots Not Set',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
-                          color: hasTodaySlots ? const Color(0xFF16A34A) : const Color(0xFFDC2626),
+                          color: Color(0xFF1A1A1A),
                         ),
                       ),
                     ],
@@ -680,21 +688,21 @@ class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
                               child: _buildStatusMetric(
                                 'Active',
                                 '$totalCarSlots cars\n$totalBikeSlots bikes',
-                                Colors.blue[600]!,
+                                const Color(0xFF1A1A1A),
                               ),
                             ),
                             Expanded(
                               child: _buildStatusMetric(
                                 'Booked',
                                 '$bookedCarSlots cars\n$bookedBikeSlots bikes',
-                                Colors.orange[600]!,
+                                const Color(0xFF1A1A1A).withValues(alpha: 0.7),
                               ),
                             ),
                             Expanded(
                               child: _buildStatusMetric(
                                 'Available',
                                 '$remainingCarSlots cars\n$remainingBikeSlots bikes',
-                                Colors.green[600]!,
+                                const Color(0xFF1A1A1A).withValues(alpha: 0.5),
                               ),
                             ),
                           ],
@@ -877,7 +885,7 @@ class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
                   child: ElevatedButton(
                     onPressed: () => _navigateToSlotManagement(listing),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: hasTodaySlots ? const Color(0xFF10B981) : const Color(0xFFF59E0B),
+                      backgroundColor: const Color(0xFF1A1A1A),
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       shape: RoundedRectangleBorder(
@@ -959,7 +967,7 @@ class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
         child: ElevatedButton(
           onPressed: () => _performEmergencyReduction(listingId, vehicleType, amount),
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red[600],
+            backgroundColor: const Color(0xFF1A1A1A),
             foregroundColor: Colors.white,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             minimumSize: const Size(0, 32),
@@ -1068,7 +1076,7 @@ class _ManageSlotsScreenState extends State<ManageSlotsScreen> {
       ),
     );
 
-    if (result == true) {
+    if (result == true && mounted) {
       await _loadApprovedListings();
     }
   }
@@ -1084,7 +1092,7 @@ class SlotManagementScreen extends StatefulWidget {
   State<SlotManagementScreen> createState() => _SlotManagementScreenState();
 }
 
-class _SlotManagementScreenState extends State<SlotManagementScreen> {
+class _SlotManagementScreenState extends State<SlotManagementScreen> with AutomaticKeepAliveClientMixin {
   final SlotService _slotService = SlotService();
 
   late TextEditingController _carSlotsController;
@@ -1093,6 +1101,9 @@ class _SlotManagementScreenState extends State<SlotManagementScreen> {
   bool _isLoading = true;
   bool _isSaving = false;
   Map<String, dynamic>? _currentSlots;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -1182,6 +1193,8 @@ class _SlotManagementScreenState extends State<SlotManagementScreen> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context); // Required for AutomaticKeepAliveClientMixin
+
     final parkingName = widget.listing['parking_space_name'] as String? ?? 'Manage Slots';
     final totalCarSlots = widget.listing['total_car_slots'] as int? ?? 0;
     final totalBikeSlots = widget.listing['total_bike_slots'] as int? ?? 0;
@@ -1195,7 +1208,11 @@ class _SlotManagementScreenState extends State<SlotManagementScreen> {
         title: Text(parkingName),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, size: 20),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () {
+            if (Navigator.of(context).canPop()) {
+              Navigator.of(context).pop(false);
+            }
+          },
         ),
       ),
       body: _isLoading
@@ -1331,7 +1348,7 @@ class _SlotManagementScreenState extends State<SlotManagementScreen> {
                     child: ElevatedButton(
                       onPressed: _isSaving ? null : _saveDailySlots,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF6366F1),
+                        backgroundColor: Colors.black,
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                       ),

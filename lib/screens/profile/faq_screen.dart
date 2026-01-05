@@ -60,7 +60,7 @@ class _FAQScreenState extends State<FAQScreen> {
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF1F2937)),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           style: IconButton.styleFrom(
             backgroundColor: Colors.white,
             shadowColor: const Color(0x1F000000),
@@ -70,7 +70,7 @@ class _FAQScreenState extends State<FAQScreen> {
         title: const Text(
           'Frequently Asked Questions',
           style: TextStyle(
-            color: Color(0xFF1F2937),
+            color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),

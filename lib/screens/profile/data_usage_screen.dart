@@ -45,7 +45,7 @@ class _DataUsageScreenState extends State<DataUsageScreen> {
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF1F2937)),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           style: IconButton.styleFrom(
             backgroundColor: Colors.white,
             shadowColor: const Color(0x1F000000),
@@ -55,7 +55,7 @@ class _DataUsageScreenState extends State<DataUsageScreen> {
         title: const Text(
           'Data Usage & Permissions',
           style: TextStyle(
-            color: Color(0xFF1F2937),
+            color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
@@ -81,7 +81,7 @@ class _DataUsageScreenState extends State<DataUsageScreen> {
                     const Icon(
                       Icons.security_outlined,
                       size: 48,
-                      color: Color(0xFF6366F1),
+                      color: Colors.black,
                     ),
                     const SizedBox(height: 16),
                     const Text(
@@ -232,7 +232,7 @@ class _DataUsageScreenState extends State<DataUsageScreen> {
                   icon: const Icon(Icons.settings, color: Colors.white),
                   label: const Text('Manage Permissions'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF6366F1),
+                    backgroundColor: Colors.black,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
@@ -325,14 +325,14 @@ class _DataUsageScreenState extends State<DataUsageScreen> {
                         const Icon(
                           Icons.email_outlined,
                           size: 20,
-                          color: Color(0xFF6366F1),
+                          color: Colors.black,
                         ),
                         const SizedBox(width: 8),
                         const Text(
                           'privacy@parkinghost.com',
                           style: TextStyle(
                             fontSize: 14,
-                            color: Color(0xFF6366F1),
+                            color: Colors.black,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -461,15 +461,15 @@ class _DataUsageScreenState extends State<DataUsageScreen> {
       statusText = 'Checking...';
       statusIcon = Icons.help_outline;
     } else if (status.isGranted) {
-      statusColor = const Color(0xFF10B981);
+      statusColor = Colors.black;
       statusText = 'Granted';
       statusIcon = Icons.check_circle;
     } else if (status.isDenied) {
-      statusColor = const Color(0xFFEF4444);
+      statusColor = Colors.black.withOpacity(0.6);
       statusText = 'Denied';
       statusIcon = Icons.cancel;
     } else if (status.isPermanentlyDenied) {
-      statusColor = const Color(0xFFF59E0B);
+      statusColor = Colors.grey;
       statusText = 'Permanently Denied';
       statusIcon = Icons.warning;
     } else {

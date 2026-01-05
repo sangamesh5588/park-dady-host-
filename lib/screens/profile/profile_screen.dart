@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../services/auth_service.dart';
-import '../../app_colors.dart';
 import 'edit_profile_screen.dart';
 import 'parking_slots_screen.dart';
 import '../booking/bookings_screen.dart';
@@ -137,7 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         barrierDismissible: false,
         builder: (context) => const Center(
           child: CircularProgressIndicator(
-            color: Color(0xFF6366F1),
+            color: Color(0xFF1A1A1A),
           ),
         ),
       );
@@ -183,7 +182,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: Colors.white,
         body: const Center(
           child: CircularProgressIndicator(
-            color: Color(0xFF6366F1),
+            color: Color(0xFF1A1A1A),
           ),
         ),
       );
@@ -209,7 +208,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: const Text(
           'Profile',
           style: TextStyle(
-            color: Color(0xFF1F2937),
+            color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
@@ -231,7 +230,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       height: 80,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: const Color(0xFFF3F4F6),
+                        color: const Color(0xFFF5F5F5),
                       ),
                       child: Center(
                         child: Text(
@@ -239,7 +238,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           style: const TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFF6366F1),
+                            color: Color(0xFF1A1A1A),
                           ),
                         ),
                       ),
@@ -252,14 +251,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
-                        color: Color(0xFF1F2937),
+                        color: Colors.black,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                       decoration: BoxDecoration(
-                        color: isHost ? const Color(0xFF6366F1) : const Color(0xFF10B981),
+                        color: const Color(0xFF1A1A1A),
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Text(
@@ -281,9 +280,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
               _buildMenuItem(
                 icon: Icons.edit_outlined,
                 title: 'Edit Profile',
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const EditProfileScreen()),
-                ),
+                onTap: () async {
+                  final result = await Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const EditProfileScreen()),
+                  );
+                  // Refresh profile if changes were made
+                  if (result == true && mounted) {
+                    await _loadUserProfile();
+                  }
+                },
               ),
 
               if (isHost) ...[
@@ -541,7 +546,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
-        prefixIcon: Icon(icon, color: AppColors.uberOrange),
+        prefixIcon: Icon(icon, color: const Color(0xFF1A1A1A)),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: Theme.of(context).colorScheme.outline),
@@ -552,7 +557,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: AppColors.uberOrange, width: 2),
+          borderSide: const BorderSide(color: Color(0xFF1A1A1A), width: 2),
         ),
         filled: true,
         fillColor: Theme.of(context).colorScheme.surface,
@@ -568,12 +573,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: AppColors.uberOrange.withValues(alpha: 0.1),
+              color: const Color(0xFF1A1A1A).withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(
               icon,
-              color: AppColors.uberOrange,
+              color: const Color(0xFF1A1A1A),
               size: 20,
             ),
           ),
@@ -659,7 +664,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 title,
                 style: TextStyle(
                   fontSize: 16,
-                  color: textColor ?? const Color(0xFF1F2937),
+                  color: textColor ?? Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
               ),

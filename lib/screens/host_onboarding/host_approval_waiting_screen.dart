@@ -71,13 +71,13 @@ class _HostApprovalWaitingScreenState extends State<HostApprovalWaitingScreen> {
                 width: 120,
                 height: 120,
                 decoration: BoxDecoration(
-                  color: Colors.orange[100],
+                  color: const Color(0xFFF5F5F5),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.hourglass_empty,
                   size: 60,
-                  color: const Color(0xFFFF6B35),
+                  color: Color(0xFF1A1A1A),
                 ),
               ),
               const SizedBox(height: 32),

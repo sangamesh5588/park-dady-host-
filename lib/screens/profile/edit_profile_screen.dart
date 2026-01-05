@@ -134,23 +134,23 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     if (_isLoading) {
       return Scaffold(
-        backgroundColor: const Color(0xFFFAFAFA),
+        backgroundColor: Colors.white,
         body: const Center(
           child: CircularProgressIndicator(
-            color: Color(0xFF6366F1),
+            color: Colors.black,
           ),
         ),
       );
     }
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFAFAFA),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF1F2937)),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           style: IconButton.styleFrom(
             backgroundColor: Colors.white,
             shadowColor: const Color(0x1F000000),
@@ -160,7 +160,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         title: const Text(
           'Edit Profile',
           style: TextStyle(
-            color: Color(0xFF1F2937),
+            color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
@@ -197,7 +197,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           style: const TextStyle(
                             fontSize: 40,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFF6366F1),
+                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -208,7 +208,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         decoration: const BoxDecoration(
-                          color: Color(0xFF6366F1),
+                          color: Colors.black,
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
@@ -234,7 +234,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               TextButton(
                 onPressed: _showPhotoOptions,
                 style: TextButton.styleFrom(
-                  foregroundColor: const Color(0xFF6366F1),
+                  foregroundColor: Colors.black,
                   textStyle: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -347,12 +347,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   gradient: const LinearGradient(
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
-                    colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                    colors: [Colors.black, Color(0xFF333333)],
                   ),
                   borderRadius: BorderRadius.circular(25),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF6366F1).withValues(alpha: 0.3),
+                      color: Colors.black.withValues(alpha: 0.3),
                       blurRadius: 8,
                       offset: const Offset(0, 4),
                     ),
@@ -437,7 +437,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           border: InputBorder.none,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Color(0xFF6366F1), width: 1.5),
+            borderSide: const BorderSide(color: Colors.black, width: 1.5),
           ),
         ),
         validator: validator,

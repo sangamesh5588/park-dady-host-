@@ -218,7 +218,7 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
                       child: ElevatedButton(
                         onPressed: _submitReport,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFD96F4A),
+                          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
@@ -285,8 +285,8 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
                             icon: const Icon(Icons.phone),
                             label: const Text('Call Now'),
                             style: OutlinedButton.styleFrom(
-                              side: const BorderSide(color: Color(0xFFD96F4A)),
-                              foregroundColor: const Color(0xFFD96F4A),
+                              side: const BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
+                              foregroundColor: const Color.fromARGB(255, 0, 0, 0),
                             ),
                           ),
                         ),
@@ -299,8 +299,8 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
                             icon: const Icon(Icons.chat),
                             label: const Text('Live Chat'),
                             style: OutlinedButton.styleFrom(
-                              side: const BorderSide(color: Color(0xFFD96F4A)),
-                              foregroundColor: const Color(0xFFD96F4A),
+                              side: const BorderSide(color: Color.fromARGB(255, 0, 0, 0)),
+                              foregroundColor: const Color.fromARGB(255, 0, 0, 0),
                             ),
                           ),
                         ),

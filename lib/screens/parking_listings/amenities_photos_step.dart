@@ -103,7 +103,7 @@ class _AmenitiesPhotosStepState extends State<AmenitiesPhotosStep> {
                     width: 32,
                     height: 32,
                     decoration: const BoxDecoration(
-                      color: Color(0xFF6366F1),
+                      color: Color.fromARGB(255, 0, 0, 0),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -166,7 +166,7 @@ class _AmenitiesPhotosStepState extends State<AmenitiesPhotosStep> {
                     width: 32,
                     height: 32,
                     decoration: const BoxDecoration(
-                      color: Color(0xFF6366F1),
+                      color: Color.fromARGB(255, 0, 0, 0),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -259,7 +259,7 @@ class _AmenitiesPhotosStepState extends State<AmenitiesPhotosStep> {
                     width: 32,
                     height: 32,
                     decoration: const BoxDecoration(
-                      color: Color(0xFF6366F1),
+                      color: Color.fromARGB(255, 0, 0, 0),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -302,12 +302,12 @@ class _AmenitiesPhotosStepState extends State<AmenitiesPhotosStep> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                    colors: [Color.fromARGB(255, 25, 25, 31), Color.fromARGB(255, 0, 0, 0)],
                   ),
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF6366F1).withValues(alpha: 0.3),
+                      color: const Color.fromARGB(255, 0, 0, 0).withValues(alpha: 0.3),
                       blurRadius: 8,
                       offset: const Offset(0, 4),
                     ),
@@ -453,7 +453,7 @@ class _AmenitiesPhotosStepState extends State<AmenitiesPhotosStep> {
                           children: [
                             Icon(
                               Icons.door_front_door,
-                              color: const Color(0xFF6366F1),
+                              color: const Color.fromARGB(255, 0, 0, 0),
                               size: 20,
                             ),
                             const SizedBox(width: 8),
@@ -533,7 +533,7 @@ class _AmenitiesPhotosStepState extends State<AmenitiesPhotosStep> {
                           children: [
                             Icon(
                               Icons.signpost,
-                              color: const Color(0xFF6366F1),
+                              color: const Color.fromARGB(255, 0, 0, 0),
                               size: 20,
                             ),
                             const SizedBox(width: 8),

@@ -59,7 +59,7 @@ class _ParkingDetailsStepState extends State<ParkingDetailsStep> {
                     width: 32,
                     height: 32,
                     decoration: const BoxDecoration(
-                      color: Color(0xFF6366F1),
+                      color: Colors.black,
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -134,7 +134,7 @@ class _ParkingDetailsStepState extends State<ParkingDetailsStep> {
                   decoration: InputDecoration(
                     labelText: 'Parking Space Name',
                     labelStyle: TextStyle(color: Colors.grey[600]),
-                    prefixIcon: const Icon(Icons.business, color: Color(0xFF6366F1)),
+                    prefixIcon: const Icon(Icons.business, color: Colors.black),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
@@ -145,7 +145,7 @@ class _ParkingDetailsStepState extends State<ParkingDetailsStep> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Color(0xFF6366F1), width: 2),
+                      borderSide: const BorderSide(color: Colors.black, width: 2),
                     ),
                     filled: true,
                     fillColor: Colors.grey[50],
@@ -175,7 +175,7 @@ class _ParkingDetailsStepState extends State<ParkingDetailsStep> {
                   decoration: InputDecoration(
                     labelText: 'Parking Address',
                     labelStyle: TextStyle(color: Colors.grey[600]),
-                    prefixIcon: const Icon(Icons.map, color: Color(0xFF6366F1)),
+                    prefixIcon: const Icon(Icons.map, color: Colors.black),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
@@ -186,7 +186,7 @@ class _ParkingDetailsStepState extends State<ParkingDetailsStep> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Color(0xFF6366F1), width: 2),
+                      borderSide: const BorderSide(color: Colors.black, width: 2),
                     ),
                     filled: true,
                     fillColor: Colors.grey[50],
@@ -217,7 +217,7 @@ class _ParkingDetailsStepState extends State<ParkingDetailsStep> {
                   decoration: InputDecoration(
                     labelText: 'Landmark (optional)',
                     labelStyle: TextStyle(color: Colors.grey[600]),
-                    prefixIcon: const Icon(Icons.place, color: Color(0xFF6366F1)),
+                    prefixIcon: const Icon(Icons.place, color: Colors.black),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
@@ -228,7 +228,7 @@ class _ParkingDetailsStepState extends State<ParkingDetailsStep> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: Color(0xFF6366F1), width: 2),
+                      borderSide: const BorderSide(color: Colors.black, width: 2),
                     ),
                     filled: true,
                     fillColor: Colors.grey[50],
@@ -264,7 +264,7 @@ class _ParkingDetailsStepState extends State<ParkingDetailsStep> {
                     width: 32,
                     height: 32,
                     decoration: const BoxDecoration(
-                      color: Color(0xFF6366F1),
+                      color: Colors.black,
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -295,9 +295,9 @@ class _ParkingDetailsStepState extends State<ParkingDetailsStep> {
                         margin: const EdgeInsets.symmetric(horizontal: 4),
                         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
                         decoration: BoxDecoration(
-                          color: isSelected ? const Color(0xFF6366F1).withValues(alpha: 0.1) : Colors.grey[50],
+                          color: isSelected ? Colors.black.withOpacity(0.1) : Colors.grey[50],
                           border: Border.all(
-                            color: isSelected ? const Color(0xFF6366F1) : Colors.grey[300]!,
+                            color: isSelected ? Colors.black : Colors.grey[300]!,
                             width: isSelected ? 2 : 1,
                           ),
                           borderRadius: BorderRadius.circular(12),
@@ -307,14 +307,14 @@ class _ParkingDetailsStepState extends State<ParkingDetailsStep> {
                             Icon(
                               type == 'Car' ? Icons.directions_car :
                               type == 'Bike' ? Icons.two_wheeler : Icons.swap_horiz,
-                              color: isSelected ? const Color(0xFF6366F1) : Colors.grey[600],
+                              color: isSelected ? Colors.black : Colors.grey[600],
                               size: 24,
                             ),
                             const SizedBox(height: 4),
                             Text(
                               type,
                               style: TextStyle(
-                                color: isSelected ? const Color(0xFF6366F1) : Colors.grey[700],
+                                color: isSelected ? Colors.black : Colors.grey[700],
                                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                                 fontSize: 14,
                               ),
@@ -354,7 +354,7 @@ class _ParkingDetailsStepState extends State<ParkingDetailsStep> {
                     width: 32,
                     height: 32,
                     decoration: const BoxDecoration(
-                      color: Color(0xFF6366F1),
+                      color: Colors.black,
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -380,12 +380,12 @@ class _ParkingDetailsStepState extends State<ParkingDetailsStep> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                    colors: [Colors.black, Color(0xFF333333)],
                   ),
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF6366F1).withValues(alpha: 0.3),
+                      color: Colors.black.withValues(alpha: 0.3),
                       blurRadius: 8,
                       offset: const Offset(0, 4),
                     ),

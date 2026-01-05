@@ -71,7 +71,7 @@ class _ContactSupportScreenState extends State<ContactSupportScreen> {
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF1F2937)),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           style: IconButton.styleFrom(
             backgroundColor: Colors.white,
             shadowColor: const Color(0x1F000000),
@@ -81,7 +81,7 @@ class _ContactSupportScreenState extends State<ContactSupportScreen> {
         title: const Text(
           'Contact Support',
           style: TextStyle(
-            color: Color(0xFF1F2937),
+            color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
@@ -174,7 +174,7 @@ class _ContactSupportScreenState extends State<ContactSupportScreen> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
-                  borderSide: const BorderSide(color: Color(0xFF3B5160)),
+                  borderSide: const BorderSide(color: Colors.black),
                 ),
               ),
               validator: (value) {
@@ -213,7 +213,7 @@ class _ContactSupportScreenState extends State<ContactSupportScreen> {
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
-                  borderSide: const BorderSide(color: Color(0xFF3B5160)),
+                  borderSide: const BorderSide(color: Colors.black),
                 ),
               ),
               validator: (value) {
@@ -235,7 +235,7 @@ class _ContactSupportScreenState extends State<ContactSupportScreen> {
               child: ElevatedButton(
                 onPressed: _submitSupportRequest,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF3B5160),
+                  backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),

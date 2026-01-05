@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'app_colors.dart';
 import 'screens/splash_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/signup_screen.dart';
 import 'screens/main_navigation_screen.dart';
 import 'screens/onboarding_screen.dart';
-import 'screens/profile/profile_screen.dart';
 import 'screens/profile/support_screen.dart';
 import 'screens/host_onboarding/host_onboarding_screen.dart';
 import 'screens/host_onboarding/host_approval_waiting_screen.dart';
@@ -18,6 +16,7 @@ import 'screens/manage_slots/manage_slots_screen.dart';
 import 'services/auth_service.dart';
 import 'services/permission_service.dart';
 import 'services/booking_notification_service.dart';
+import 'widgets/auth_guard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,6 +47,7 @@ class _ParkingHostAppState extends State<ParkingHostApp> {
   final AuthService _authService = AuthService();
   final PermissionService _permissionService = PermissionService();
   final ThemeMode _themeMode = ThemeMode.system;
+  bool _showSplash = true; // Always show splash on app start
 
   @override
   Widget build(BuildContext context) {
@@ -62,27 +62,101 @@ class _ParkingHostAppState extends State<ParkingHostApp> {
             themeMode: _themeMode,
             theme: ThemeData(
               useMaterial3: true,
-              scaffoldBackgroundColor: Colors.white,
+              scaffoldBackgroundColor: const Color(0xFFFAFAFA),
               colorScheme: const ColorScheme.light(
-                primary: AppColors.uberOrange,
+                primary: Color(0xFF1A1A1A),
                 onPrimary: Colors.white,
-                primaryContainer: Color(0xFFFFF3E0),
-                onPrimaryContainer: AppColors.uberOrange,
-                secondary: AppColors.uberOrange,
+                primaryContainer: Color(0xFFF5F5F5),
+                onPrimaryContainer: Color(0xFF1A1A1A),
+                secondary: Color(0xFF1A1A1A),
                 onSecondary: Colors.white,
-                secondaryContainer: Color(0xFFFFF3E0),
-                onSecondaryContainer: AppColors.uberOrange,
+                secondaryContainer: Color(0xFFF5F5F5),
+                onSecondaryContainer: Color(0xFF1A1A1A),
                 surface: Colors.white,
-                onSurface: Color(0xFF1F2937),
+                onSurface: Color(0xFF1A1A1A),
                 surfaceContainerHighest: Colors.white,
-                surfaceContainerHigh: Color(0xFFF8F9FA),
-                surfaceContainer: Color(0xFFF3F4F6),
-                surfaceContainerLow: Color(0xFFF8F9FA),
+                surfaceContainerHigh: Color(0xFFFAFAFA),
+                surfaceContainer: Color(0xFFF5F5F5),
+                surfaceContainerLow: Color(0xFFFAFAFA),
                 surfaceContainerLowest: Colors.white,
-                outline: Color(0xFFE5E7EB),
-                outlineVariant: Color(0xFFD1D5DB),
-                error: Color(0xFFEF4444),
+                outline: Color(0xFFE0E0E0),
+                outlineVariant: Color(0xFFF0F0F0),
+                error: Color(0xFF1A1A1A),
                 onError: Colors.white,
+              ),
+              appBarTheme: const AppBarTheme(
+                backgroundColor: Colors.white,
+                foregroundColor: Color(0xFF1A1A1A),
+                elevation: 0,
+                centerTitle: false,
+                titleTextStyle: TextStyle(
+                  color: Color(0xFF1A1A1A),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              cardTheme: CardThemeData(
+                color: Colors.white,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  side: BorderSide(
+                    color: const Color(0xFF1A1A1A).withValues(alpha: 0.1),
+                    width: 1,
+                  ),
+                ),
+              ),
+              elevatedButtonTheme: ElevatedButtonThemeData(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF1A1A1A),
+                  foregroundColor: Colors.white,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+              outlinedButtonTheme: OutlinedButtonThemeData(
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: const Color(0xFF1A1A1A),
+                  side: const BorderSide(
+                    color: Color(0xFF1A1A1A),
+                    width: 1,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+              textButtonTheme: TextButtonThemeData(
+                style: TextButton.styleFrom(
+                  foregroundColor: const Color(0xFF1A1A1A),
+                ),
+              ),
+              inputDecorationTheme: InputDecorationTheme(
+                filled: true,
+                fillColor: const Color(0xFF1A1A1A).withValues(alpha: 0.05),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(
+                    color: Color(0xFF1A1A1A),
+                    width: 2,
+                  ),
+                ),
+                labelStyle: const TextStyle(
+                  color: Color(0xFF1A1A1A),
+                ),
+                hintStyle: TextStyle(
+                  color: const Color(0xFF1A1A1A).withValues(alpha: 0.4),
+                ),
               ),
               platform: TargetPlatform.android,
             ),
@@ -95,42 +169,41 @@ class _ParkingHostAppState extends State<ParkingHostApp> {
         final authState = snapshot.data;
         final isAuthenticated = authState?.session != null;
 
+        // Always show splash screen first, then determine next screen
+        if (_showSplash) {
+          // Schedule navigation after splash screen animations complete
+          // Total splash duration: ~2500ms (animations + status text changes)
+          WidgetsBinding.instance.addPostFrameCallback((_) async {
+            await Future.delayed(const Duration(milliseconds: 2500));
+            if (mounted) {
+              setState(() => _showSplash = false);
+            }
+          });
+        }
+
         return FutureBuilder<Widget>(
-          future: _getInitialScreen(isAuthenticated),
+          future: _showSplash ? Future.value(const SplashScreen()) : _getInitialScreen(isAuthenticated),
           builder: (context, screenSnapshot) {
             if (screenSnapshot.connectionState == ConnectionState.waiting) {
               return MaterialApp(
                 title: 'ParkDady Host',
                 debugShowCheckedModeBanner: false,
                 themeMode: _themeMode,
-              theme: ThemeData(
-                useMaterial3: true,
-                scaffoldBackgroundColor: Colors.white,
-                colorScheme: const ColorScheme.light(
-                  primary: AppColors.uberOrange,
-                  onPrimary: Colors.white,
-                  primaryContainer: Color(0xFFFFF3E0),
-                  onPrimaryContainer: AppColors.uberOrange,
-                  secondary: AppColors.uberOrange,
-                  onSecondary: Colors.white,
-                  secondaryContainer: Color(0xFFFFF3E0),
-                  onSecondaryContainer: AppColors.uberOrange,
-                  surface: Colors.white,
-                  onSurface: Color(0xFF1F2937),
-                  surfaceContainerHighest: Colors.white,
-                  surfaceContainerHigh: Color(0xFFF8F9FA),
-                  surfaceContainer: Color(0xFFF3F4F6),
-                  surfaceContainerLow: Color(0xFFF8F9FA),
-                  surfaceContainerLowest: Colors.white,
-                  outline: Color(0xFFE5E7EB),
-                  outlineVariant: Color(0xFFD1D5DB),
-                  error: Color(0xFFEF4444),
-                  onError: Colors.white,
+                theme: ThemeData(
+                  useMaterial3: true,
+                  scaffoldBackgroundColor: const Color(0xFFFAFAFA),
+                  colorScheme: const ColorScheme.light(
+                    primary: Color(0xFF1A1A1A),
+                    onPrimary: Colors.white,
+                    surface: Colors.white,
+                    onSurface: Color(0xFF1A1A1A),
+                  ),
+                  platform: TargetPlatform.android,
                 ),
-                platform: TargetPlatform.android,
-              ),
                 home: const Scaffold(
-                  body: Center(child: CircularProgressIndicator()),
+                  body: Center(child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF1A1A1A)),
+                  )),
                 ),
               );
             }
@@ -141,27 +214,101 @@ class _ParkingHostAppState extends State<ParkingHostApp> {
               themeMode: _themeMode,
               theme: ThemeData(
                 useMaterial3: true,
-                scaffoldBackgroundColor: Colors.white,
+                scaffoldBackgroundColor: const Color(0xFFFAFAFA),
                 colorScheme: const ColorScheme.light(
-                  primary: AppColors.uberOrange,
+                  primary: Color(0xFF1A1A1A),
                   onPrimary: Colors.white,
-                  primaryContainer: Color(0xFFFFF3E0),
-                  onPrimaryContainer: AppColors.uberOrange,
-                  secondary: AppColors.uberOrange,
+                  primaryContainer: Color(0xFFF5F5F5),
+                  onPrimaryContainer: Color(0xFF1A1A1A),
+                  secondary: Color(0xFF1A1A1A),
                   onSecondary: Colors.white,
-                  secondaryContainer: Color(0xFFFFF3E0),
-                  onSecondaryContainer: AppColors.uberOrange,
+                  secondaryContainer: Color(0xFFF5F5F5),
+                  onSecondaryContainer: Color(0xFF1A1A1A),
                   surface: Colors.white,
-                  onSurface: Color(0xFF1F2937),
+                  onSurface: Color(0xFF1A1A1A),
                   surfaceContainerHighest: Colors.white,
-                  surfaceContainerHigh: Color(0xFFF8F9FA),
-                  surfaceContainer: Color(0xFFF3F4F6),
-                  surfaceContainerLow: Color(0xFFF8F9FA),
+                  surfaceContainerHigh: Color(0xFFFAFAFA),
+                  surfaceContainer: Color(0xFFF5F5F5),
+                  surfaceContainerLow: Color(0xFFFAFAFA),
                   surfaceContainerLowest: Colors.white,
-                  outline: Color(0xFFE5E7EB),
-                  outlineVariant: Color(0xFFD1D5DB),
-                  error: Color(0xFFEF4444),
+                  outline: Color(0xFFE0E0E0),
+                  outlineVariant: Color(0xFFF0F0F0),
+                  error: Color(0xFF1A1A1A),
                   onError: Colors.white,
+                ),
+                appBarTheme: const AppBarTheme(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Color(0xFF1A1A1A),
+                  elevation: 0,
+                  centerTitle: false,
+                  titleTextStyle: TextStyle(
+                    color: Color(0xFF1A1A1A),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                cardTheme: CardThemeData(
+                  color: Colors.white,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    side: BorderSide(
+                      color: const Color(0xFF1A1A1A).withValues(alpha: 0.1),
+                      width: 1,
+                    ),
+                  ),
+                ),
+                elevatedButtonTheme: ElevatedButtonThemeData(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF1A1A1A),
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+                outlinedButtonTheme: OutlinedButtonThemeData(
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: const Color(0xFF1A1A1A),
+                    side: const BorderSide(
+                      color: Color(0xFF1A1A1A),
+                      width: 1,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+                textButtonTheme: TextButtonThemeData(
+                  style: TextButton.styleFrom(
+                    foregroundColor: const Color(0xFF1A1A1A),
+                  ),
+                ),
+                inputDecorationTheme: InputDecorationTheme(
+                  filled: true,
+                  fillColor: const Color(0xFF1A1A1A).withValues(alpha: 0.05),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(
+                      color: Color(0xFF1A1A1A),
+                      width: 2,
+                    ),
+                  ),
+                  labelStyle: const TextStyle(
+                    color: Color(0xFF1A1A1A),
+                  ),
+                  hintStyle: TextStyle(
+                    color: const Color(0xFF1A1A1A).withValues(alpha: 0.4),
+                  ),
                 ),
                 platform: TargetPlatform.android,
               ),
@@ -169,15 +316,15 @@ class _ParkingHostAppState extends State<ParkingHostApp> {
               routes: {
                 '/login': (context) => const LoginScreen(),
                 '/signup': (context) => const SignupScreen(),
-                '/main': (context) => const MainNavigationScreen(),
+                '/main': (context) => const AuthGuard(child: MainNavigationScreen()),
                 '/onboarding': (context) => const OnboardingScreen(),
-                '/host_onboarding': (context) => const HostOnboardingScreen(),
+                '/host_onboarding': (context) => const AuthGuard(child: HostOnboardingScreen()),
                 '/host_approval_waiting': (context) => const HostApprovalWaitingScreen(),
-                '/create_listing': (context) => const CreateListingScreen(),
+                '/create_listing': (context) => const AuthGuard(child: CreateListingScreen()),
                 '/listing_approval_waiting': (context) => const ListingApprovalWaitingScreen(),
                 '/listing_rejected': (context) => const ListingRejectedScreen(),
-                '/manage_slots': (context) => const ManageSlotsScreen(),
-                '/support': (context) => const SupportScreen(),
+                '/manage_slots': (context) => const AuthGuard(child: ManageSlotsScreen()),
+                '/support': (context) => const AuthGuard(child: SupportScreen()),
               },
             );
           },
@@ -275,15 +422,20 @@ class _ParkingHostAppState extends State<ParkingHostApp> {
 
   Future<String?> _getHostProfileStatus() async {
     try {
-      final userId = Supabase.instance.client.auth.currentUser!.id;
+      final currentUser = Supabase.instance.client.auth.currentUser;
+      if (currentUser == null) return null;
+
       final response = await Supabase.instance.client
           .from('host_profiles')
           .select('status')
-          .eq('user_id', userId)
+          .eq('user_id', currentUser.id)
+          .order('created_at', ascending: false)
+          .limit(1)
           .maybeSingle();
 
       return response?['status'] as String?;
     } catch (e) {
+      print('Error getting host profile status: $e');
       // If no profile exists or error, return null
       return null;
     }
@@ -291,12 +443,18 @@ class _ParkingHostAppState extends State<ParkingHostApp> {
 
   Future<bool> _hasCompletedHostProfile() async {
     try {
-      final userId = Supabase.instance.client.auth.currentUser!.id;
+      final currentUser = Supabase.instance.client.auth.currentUser;
+      if (currentUser == null) return false;
+
       final response = await Supabase.instance.client
           .from('host_profiles')
           .select('status')
-          .eq('user_id', userId)
-          .single();
+          .eq('user_id', currentUser.id)
+          .order('created_at', ascending: false)
+          .limit(1)
+          .maybeSingle();
+
+      if (response == null) return false;
 
       final status = response['status'];
       return status == 'approved';

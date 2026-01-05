@@ -44,7 +44,7 @@ class SlotCapacityStep extends StatelessWidget {
                     width: 32,
                     height: 32,
                     decoration: const BoxDecoration(
-                      color: Color(0xFF6366F1),
+                      color: Colors.black,
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -107,12 +107,12 @@ class SlotCapacityStep extends StatelessWidget {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                        color: Colors.blue[50],
+                        color: Colors.grey[100],
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Icon(
                         Icons.directions_car,
-                        color: Colors.blue,
+                        color: Colors.black,
                         size: 20,
                       ),
                     ),
@@ -145,7 +145,7 @@ class SlotCapacityStep extends StatelessWidget {
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Color(0xFF6366F1), width: 2),
+                              borderSide: const BorderSide(color: Colors.black, width: 2),
                             ),
                             filled: true,
                             fillColor: Colors.grey[50],
@@ -173,12 +173,12 @@ class SlotCapacityStep extends StatelessWidget {
                       width: 40,
                       height: 40,
                       decoration: BoxDecoration(
-                        color: Colors.orange[50],
+                        color: Colors.grey[100],
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Icon(
                         Icons.two_wheeler,
-                        color: Colors.orange,
+                        color: Colors.black,
                         size: 20,
                       ),
                     ),
@@ -211,7 +211,7 @@ class SlotCapacityStep extends StatelessWidget {
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: Color(0xFF6366F1), width: 2),
+                              borderSide: const BorderSide(color: Colors.black, width: 2),
                             ),
                             filled: true,
                             fillColor: Colors.grey[50],
@@ -239,15 +239,15 @@ class SlotCapacityStep extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           margin: const EdgeInsets.only(bottom: 20),
           decoration: BoxDecoration(
-            color: const Color(0xFF6366F1).withValues(alpha: 0.05),
+            color: Colors.grey[50],
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: const Color(0xFF6366F1).withValues(alpha: 0.1)),
+            border: Border.all(color: Colors.grey[200]!),
           ),
           child: Row(
             children: [
               Icon(
                 Icons.info_outline,
-                color: const Color(0xFF6366F1),
+                color: Colors.black,
                 size: 20,
               ),
               const SizedBox(width: 12),

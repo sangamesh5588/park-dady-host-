@@ -379,7 +379,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   child: const Icon(
                     Icons.celebration,
-                    color: Color(0xFF10B981),
+                    color: Color(0xFF1A1A1A),
                     size: 40,
                   ),
                 ),
@@ -454,7 +454,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       _markCongratsAsSeen(); // Mark as seen
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF10B981),
+                      backgroundColor: const Color(0xFF1A1A1A),
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
@@ -490,7 +490,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // Status bar background
           Container(
             height: MediaQuery.of(context).padding.top,
-            color: const Color(0xFF6366F1),
+            color: const Color(0xFF1A1A1A),
           ),
 
           // Enhanced gradient header with blue tap effect
@@ -501,8 +501,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 // Navigate to profile screen when tapped
                 Navigator.of(context).pushNamed('/profile');
               },
-              splashColor: const Color(0xFF6366F1).withValues(alpha: 0.3),
-              highlightColor: const Color(0xFF6366F1).withValues(alpha: 0.1),
+              splashColor: const Color(0xFF1A1A1A).withValues(alpha: 0.3),
+              highlightColor: const Color(0xFF1A1A1A).withValues(alpha: 0.1),
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(28),
                 bottomRight: Radius.circular(28),
@@ -510,21 +510,14 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Ink(
                 padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color(0xFF6366F1),
-                      Color(0xFF8B5CF6),
-                    ],
-                  ),
+                  color: const Color(0xFF1A1A1A),
                   borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(28),
                     bottomRight: Radius.circular(28),
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF6366F1).withValues(alpha: 0.3),
+                      color: const Color(0xFF1A1A1A).withValues(alpha: 0.3),
                       blurRadius: 20,
                       offset: const Offset(0, 6),
                     ),
@@ -547,19 +540,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                      child: Center(
-                        child: ShaderMask(
-                          shaderCallback: (bounds) => const LinearGradient(
-                            colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
-                          ).createShader(bounds),
-                          child: const Text(
-                            'PH',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 0.5,
-                              color: Colors.white,
-                            ),
+                      child: const Center(
+                        child: Text(
+                          'PH',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 0.5,
+                            color: Color(0xFF1A1A1A),
                           ),
                         ),
                       ),
@@ -644,7 +632,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     _loadCheckedInBooking(),
                   ]);
                 },
-                color: const Color(0xFF6366F1),
+                color: const Color(0xFF1A1A1A),
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.all(16.0),
                   physics: const AlwaysScrollableScrollPhysics(),
@@ -664,7 +652,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 'Total Orders',
                                 _totalOrders.toString(),
                                 Icons.receipt_long,
-                                const Color(0xFF1976D2), // Blue for Orders
+                                const Color(0xFF1A1A1A), // Black for Orders
                               ),
                         ),
                         const SizedBox(width: 16),
@@ -676,7 +664,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 'Total Earnings',
                                 '₹${_todayEarnings.toStringAsFixed(0)}',
                                 Icons.account_balance_wallet,
-                                const Color(0xFF10B981), // Green for Earnings
+                                const Color(0xFF1A1A1A), // Black for Earnings
                               ),
                         ),
                       ],
@@ -716,7 +704,7 @@ class _HomeScreenState extends State<HomeScreen> {
         margin: const EdgeInsets.only(bottom: 20), // Positioned at bottom 20
         child: FloatingActionButton(
           onPressed: _handleCreateListing,
-          backgroundColor: const Color(0xFF6366F1),
+          backgroundColor: const Color(0xFF1A1A1A),
           foregroundColor: Colors.white,
           elevation: 8,
           child: const Icon(
@@ -1003,7 +991,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Icon(
                   isOvertime ? Icons.warning_amber : Icons.timer_outlined,
                   size: 16,
-                  color: isOvertime ? const Color(0xFFEF4444) : const Color(0xFF6366F1),
+                  color: isOvertime ? const Color(0xFFEF4444) : const Color(0xFF1A1A1A),
                 ),
                 const SizedBox(width: 6),
                 Text(
@@ -1011,7 +999,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: isOvertime ? const Color(0xFFEF4444) : const Color(0xFF6366F1),
+                    color: isOvertime ? const Color(0xFFEF4444) : const Color(0xFF1A1A1A),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -1035,7 +1023,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
-                      colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                      colors: [Color(0xFF1A1A1A), Color(0xFF1A1A1A)],
                     ),
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -1115,20 +1103,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  const Color(0xFF6366F1).withValues(alpha: 0.1),
-                  const Color(0xFF8B5CF6).withValues(alpha: 0.1),
+                  const Color(0xFF1A1A1A).withValues(alpha: 0.1),
+                  const Color(0xFF1A1A1A).withValues(alpha: 0.1),
                 ],
               ),
               shape: BoxShape.circle,
               border: Border.all(
-                color: const Color(0xFF6366F1).withValues(alpha: 0.2),
+                color: const Color(0xFF1A1A1A).withValues(alpha: 0.2),
                 width: 2,
               ),
             ),
             child: Icon(
               Icons.inbox_outlined,
               size: 40,
-              color: const Color(0xFF6366F1).withValues(alpha: 0.6),
+              color: const Color(0xFF1A1A1A).withValues(alpha: 0.6),
             ),
           ),
           const SizedBox(height: 24),

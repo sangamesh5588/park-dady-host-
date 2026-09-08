@@ -1,119 +1,81 @@
-# ParkDady Host
+# 🅿️ ParkDady Host — Space Owner & Parking Spot Management Platform
 
-A Flutter application for parking space hosts to manage their parking spots and bookings.
+[![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
+[![Backend](https://img.shields.io/badge/Backend-Supabase_PostgreSQL-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com)
+[![Maps](https://img.shields.io/badge/Maps-Google_Maps_SDK-4285F4?style=for-the-badge&logo=googlemaps&logoColor=white)](https://cloud.google.com/maps-platform)
+[![RBAC](https://img.shields.io/badge/Security-Dual--Role_RBAC-10B981?style=for-the-badge)](https://supabase.com)
 
-## Features
+> **ParkDady Host** is an enterprise cross-platform mobile application built with **Flutter** and **Supabase** designed for residential and commercial parking space owners. It empowers hosts to monetize unused parking spots, configure hourly rates, monitor real-time check-ins, and manage monthly earnings.
 
-- **Secure Authentication**: Email/password and social login (Google, Apple) via Supabase
-- **Role Management**: Users are automatically assigned the "host" role upon registration
-- **Host Dashboard**: Manage parking spots, view bookings, and track earnings
-- **Modern UI**: Built with Flutter Material 3 design system
+---
 
-## Setup
+## 🏗️ Architecture & Dual-Role System
 
-### Prerequisites
+ParkDady Host incorporates an intelligent **Dual-Role State Machine** allowing registered users to seamlessly operate as both space owners (Hosts) and parking seekers (Renters) under a single identity profile:
 
-- Flutter SDK (3.10.3 or higher)
-- Supabase account
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      HOST PRESENTATION                      │
+│  • Spot Inventory & Availability Calendar Controller        │
+│  • Real-Time Spot Occupancy Dashboard                       │
+│  • Dynamic Hourly & Flat-Rate Pricing Manager               │
+│  • Payouts, Earnings Analytics & Bank Account Linking       │
+├─────────────────────────────────────────────────────────────┤
+│                    DUAL-ROLE RBAC ENGINE                    │
+│  • Dynamic Role Switcher (Host ⇋ Renter)                    │
+│  • Isolated Permission Boundaries with Supabase RLS         │
+│  • Google Maps Geocoding for Accurate Spot Coordinates      │
+├─────────────────────────────────────────────────────────────┤
+│                     DATA & BACKEND CORE                     │
+│  • Supabase PostgreSQL Database with Custom Triggers        │
+│  • Realtime Occupancy WebSockets                            │
+│  • Encrypted Keystore for Release Security                  │
+└─────────────────────────────────────────────────────────────┘
+```
 
-### 1. Clone and Install Dependencies
+---
 
+## ✨ Features
+
+- 📍 **Interactive Spot Onboarding:** Pinpoint exact parking spots with Google Maps integration, upload photos, and define access instructions.
+- 💵 **Flexible Rate Engine:** Set custom hourly, daily, or flat weekend parking tariffs.
+- 📊 **Real-Time Occupancy Tracking:** Instant notifications and dashboard updates when a driver reserves or checks in to your parking space.
+- 💳 **Earnings & Direct Payouts:** Automated transaction summaries, commission calculations, and monthly payout records.
+- 🛡️ **Account Lifecycle & Security:** Includes self-service account deletion compliant with Google Play Store & Apple App Store guidelines.
+
+---
+
+## 🚀 Quick Setup & Installation
+
+### 1. Clone the Repository
 ```bash
-git clone <repository-url>
-cd praking_host
+git clone https://github.com/sangamesh5588/park-dady-host-.git
+cd park-dady-host-
+```
+
+### 2. Install Dependencies
+```bash
 flutter pub get
 ```
 
-### 2. Supabase Setup
-
-1. Create a new project at [supabase.com](https://supabase.com)
-2. Go to Settings > API and copy your project URL and anon key
-3. Update `.env` file with your Supabase credentials:
-
-```env
-SUPABASE_URL=https://your-project-url.supabase.co
-SUPABASE_ANON_KEY=your-supabase-anon-key
+### 3. Environment Configuration
+Copy `.env.example` to `.env`:
+```bash
+cp .env.example .env
+```
+```ini
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=your-anon-key
+GOOGLE_MAPS_API_KEY=your-google-maps-api-key
 ```
 
-### 3. Create Database Tables
-
-In your Supabase dashboard, go to SQL Editor and run:
-
-```sql
--- Create profiles table
-CREATE TABLE profiles (
-  id UUID REFERENCES auth.users(id) PRIMARY KEY,
-  email TEXT,
-  role TEXT NOT NULL DEFAULT 'host',
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-
--- Enable RLS
-ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
-
--- Create policies
-CREATE POLICY "Users can view own profile"
-  ON profiles FOR SELECT
-  USING (auth.uid() = id);
-
-CREATE POLICY "Users can insert own profile"
-  ON profiles FOR INSERT
-  WITH CHECK (auth.uid() = id);
-
-CREATE POLICY "Users can update own profile"
-  ON profiles FOR UPDATE
-  USING (auth.uid() = id);
-```
-
-### 4. Configure OAuth (Optional)
-
-For Google and Apple sign-in:
-
-1. Go to Authentication > Providers in Supabase dashboard
-2. Enable Google and Apple providers
-3. Configure OAuth credentials from Google Cloud Console and Apple Developer Console
-4. Update `.env` with OAuth client IDs if needed
-
-### 5. Run the App
-
+### 4. Run Application
 ```bash
 flutter run
 ```
 
-## Project Structure
+---
 
-```
-lib/
-├── main.dart                 # App entry point with Supabase initialization
-├── app_colors.dart           # Material 3 color scheme
-├── services/
-│   └── auth_service.dart     # Authentication service
-└── screens/
-    ├── splash_screen.dart    # Splash screen
-    ├── login_screen.dart     # Login screen
-    ├── signup_screen.dart    # Signup screen
-    └── home_screen.dart      # Host dashboard
-```
-
-## Authentication Flow
-
-1. Users see splash screen on app launch
-2. If not authenticated, redirected to login/signup
-3. Upon successful authentication, user role is set to "host"
-4. Authenticated users see the host dashboard
-
-## Technologies Used
-
-- **Flutter**: UI framework
-- **Supabase**: Backend as a Service (Auth, Database)
-- **Material 3**: Design system
-- **flutter_dotenv**: Environment variable management
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-"# parking_partner_app"
+## 🛡️ License
+Copyright © 2026 Sangamesh K. All rights reserved.
